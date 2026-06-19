@@ -1,0 +1,62 @@
+{
+  "name": "random-auction-explorer",
+  "version": "0.2.0-beta.1",
+  "description": "A curiosity engine for objects with stories.",
+  "author": "Random Auction Explorer contributors",
+  "main": "dist-electron/electron/main.js",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --configLoader native",
+    "dev:web": "vite --host 0.0.0.0 --configLoader native",
+    "electron:dev": "tsc -p tsconfig.electron.json && concurrently -k \"npm:dev\" \"wait-on tcp:5173 && electron .\"",
+    "build": "tsc && vite build --configLoader native && tsc -p tsconfig.electron.json",
+    "build:web": "tsc && vite build --configLoader native",
+    "build:pwa": "npm run build:web",
+    "package:electron": "npm run build && electron-builder --win nsis",
+    "package:pwa": "npm run build:pwa && node scripts/package-pwa.mjs",
+    "package:beta": "npm run build && electron-builder --win nsis && node scripts/package-pwa.mjs",
+    "preview": "vite preview --host 127.0.0.1 --configLoader native"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.8",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "adm-zip": "^0.5.17",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^26.15.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.4.3",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "uk.co.randomauctionexplorer.app",
+    "productName": "Random Auction Explorer",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist-electron/**/*",
+      "dist-renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icons/icon-512.png",
+      "artifactName": "Random-Auction-Explorer-${version}-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
