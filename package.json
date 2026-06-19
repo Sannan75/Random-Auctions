@@ -1,6 +1,6 @@
 {
   "name": "random-auction-explorer",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "A curiosity engine for objects with stories.",
   "author": "Random Auction Explorer contributors",
   "main": "dist-electron/electron/main.js",

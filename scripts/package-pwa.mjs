@@ -21,6 +21,7 @@ await writeFile(
     `Random Auction Explorer ${packageJson.version}`,
     "",
     "Highlights",
+    "- Fixed the blank window in installed Windows builds by using relative renderer assets.",
     "- Installable manual-mode PWA for iPad Safari and modern browsers.",
     "- Shared exploration, reroll, favourite, URL and import/export logic across web and Electron.",
     "- Browser local storage and touch-friendly iPad landscape layout.",
