@@ -10,5 +10,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 );
 
 if ("serviceWorker" in navigator && !window.auctionExplorer) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js"));
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
 }

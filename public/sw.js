@@ -1,5 +1,6 @@
-const cacheName = "random-auction-explorer-v1";
-const appShell = ["/", "/index.html", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
+const cacheName = "random-auction-explorer-v2";
+const appShell = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-192.png", "./icons/icon-512.png"]
+  .map((path) => new URL(path, self.registration.scope).href);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(appShell)));
@@ -17,5 +18,5 @@ self.addEventListener("fetch", (event) => {
     const copy = response.clone();
     caches.open(cacheName).then((cache) => cache.put(event.request, copy));
     return response;
-  }).catch(() => caches.match(event.request).then((cached) => cached || caches.match("/index.html"))));
+  }).catch(() => caches.match(event.request).then((cached) => cached || caches.match(new URL("./index.html", self.registration.scope).href))));
 });

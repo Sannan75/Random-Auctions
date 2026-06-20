@@ -17,6 +17,8 @@ npm run build
 
 ## Browser / PWA
 
+Live site: [sannan75.github.io/Random-Auctions](https://sannan75.github.io/Random-Auctions/)
+
 Run the manual-mode browser version on your local network:
 
 ```bash
